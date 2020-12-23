@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" name="user1;user2;user3" class="spring.ioc.overview.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="Felix"/>
+    </bean>
+
+    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+    <!--关联一个bean-->
+        <property name="targetBeanName" value="user"/>
+    </bean>
+
+    <!--primary 加上之后，按类型查找就会优先取到这个-->
+    <bean id="superUser" class="spring.ioc.overview.domain.SuperUser" parent="user" primary="true">
+        <property name="address" value="上海"/>
+    </bean>
+
+
+</beans>
